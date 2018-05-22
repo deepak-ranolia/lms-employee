@@ -23,7 +23,6 @@ export class ApplyComponent implements OnInit {
   firstFormGroup : FormGroup
   secondFormGroup : FormGroup
   
-  selectedValue : string
   showUs = false
   loader : boolean = false
   isFirstDateSelected : boolean = true
@@ -39,7 +38,8 @@ export class ApplyComponent implements OnInit {
 
   leavedays : any  
   selected : any
-  
+ 
+  form:any
   minDate = new Date()
   minDate2 = new Date()
 
@@ -56,12 +56,16 @@ export class ApplyComponent implements OnInit {
     this.lms.getEmployees()
     this.firstFormGroup = this._formBuilder.group({
       check1 : [ '', Validators.required ],
-      check2 : [ '', Validators.required ]
+      check2 : [ '', Validators.required ],
+      check5: new FormControl({value:'', disabled: true}, Validators.required), 
     })
+    
     this.secondFormGroup = this._formBuilder.group({
       check3: [ '', Validators.required ],
       check4: [ '', Validators.required ]
     })
+  
+   
   }
   firstDateEvent( event: MatDatepickerInputEvent<Date> ){
     this.date = event.value.getDate() // Get date
@@ -132,8 +136,20 @@ export class ApplyComponent implements OnInit {
     }
   }
   Applyleave(){
-    // this.employee.push({'date_of_apply':this.minDate})
-    console.log(this.applyLeave)
+
+    //  this.employee.push(this.leavedays)
+      //this.lms.applyleave(this.leavedays)
+      // console.log(this.applyLeave,)
     // this.lms.applyleave(this.employee)
+      // this.lms.applyleave(this.leavedays)
+    // console.log(this.minDate)
+    // console.log(this.leavedays)
+    // let leave = this.leavedays()
+    // let temp = { 'leavedays':this.firstDate};
+   // let formObj = [];
+   let tmp : any;
+   tmp = { firstDate:this.firstDate, days: this.leavedays, from:this.firstDate, to:this.secondDate}
+    this.applyLeave.push(tmp);
+    console.log(this.applyLeave);
   }
 }

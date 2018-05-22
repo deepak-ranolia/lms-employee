@@ -8,14 +8,14 @@
             <ng-template matStepLabel>Select date and type</ng-template>
             <div class="col-sm-6 col-md-3 float-left pt-4">
               <mat-form-field>
-                <input matInput [min]="minDate" [matDatepickerFilter]="disableSunDay" [matDatepicker]="firstDate" placeholder="Date from" (dateInput)="firstDateEvent($event)" formControlName="check1" [(ngModel)]="applyLeave.date_from" name="date_from">
+                <input matInput [min]="minDate" [matDatepickerFilter]="disableSunDay" [matDatepicker]="firstDate" placeholder="Date from" (dateInput)="firstDateEvent($event)" formControlName="check1">
                 <mat-datepicker-toggle matSuffix [for]="firstDate"></mat-datepicker-toggle>
                 <mat-datepicker #firstDate></mat-datepicker>
               </mat-form-field>
             </div>
             <div class="col-sm-6 col-md-3 float-left pt-4">
               <mat-form-field>
-                <input matInput [min]="minDate2" [matDatepickerFilter]="disableSunDay" [matDatepicker]="secondDate" placeholder="Date to" (dateInput)="secondDateEvent($event)" formControlName="check1" [(ngModel)]="applyLeave.date_to" name="date_to" :disabled="{{isFirstDateSelected}}">
+                <input matInput [min]="minDate2" [matDatepickerFilter]="disableSunDay" [matDatepicker]="secondDate" placeholder="Date to" (dateInput)="secondDateEvent($event)" formControlName="check1"  :disabled="{{isFirstDateSelected}}">
                 <mat-datepicker-toggle matSuffix [for]="secondDate"></mat-datepicker-toggle>
                 <mat-datepicker #secondDate></mat-datepicker>
               </mat-form-field>
@@ -34,10 +34,17 @@
             <div class="clearfix pt-4"></div>
             <div class="clearfix pt-1"></div>
             <div class="col-sm-6 col-md-4 float-left pt-4">
+              <!-- <mat-form-field>
+                <input matInput [(ngModel)]="applyLeave.days"  formControlName="check5"  name="days"   placeholder="Total Applied Dates" value="{{leavedays}}"  readonly>
+              </mat-form-field> -->
+              <!-- <input matInput  class="form-control" 
+                   [(ngModel)]="applyLeave.days" name="days" #days="ngModel" required
+                    value="{{leavedays}}" placeholder="" readonly>  -->
               <mat-form-field>
-                <input matInput placeholder="Total Applied Dates" :value="{{leavedays}}" disabled>
+                <input matInput  name="days"  placeholder="Total Applied Dates" :value="{{leavedays}}" disabled>
               </mat-form-field>
             </div>
+            
             <div class="clearfix pt-4"></div>
             <div class="col-sm-6 col-md-4 float-left mb-3 mt-4">
               <button mat-raised-button matStepperNext>Next</button>

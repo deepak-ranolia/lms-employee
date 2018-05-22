@@ -38,7 +38,7 @@ export class ApiService {
   }
 
   ApplyLeave( data : any ) {
-    return this.http.post( this.URL+'lms/applyLeave', data, this.opts).map( r => console.log(r.json()) )
+    return this.http.post( this.URL+'lms/applyLeave', data, this.opts).map( r =>r.json() )
   }
 
 }
