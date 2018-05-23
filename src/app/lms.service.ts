@@ -55,7 +55,8 @@ export class LmsService {
     }, err => console.log( err ) )
   }
   
-  applyleave(leave:any, project) {
+  applyleave(leave:any) {
+    console.log(leave)
     this.api.ApplyLeave(leave).subscribe( el => {
       // if ( el.success ) console.log(el) 
       // else console.log(el)

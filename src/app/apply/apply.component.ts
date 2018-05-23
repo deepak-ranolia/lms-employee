@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
-
 import { LmsService } from '../lms.service'
 
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -18,31 +17,29 @@ import * as _ from "lodash"
 export class ApplyComponent implements OnInit {
   applyLeave = new Array()
   employee = new Array()
-  
   isLinear = true
   firstFormGroup : FormGroup
   secondFormGroup : FormGroup
-  
   showUs = false
   loader : boolean = false
   isFirstDateSelected : boolean = true
-
   firstDate : any
   secondDate : any // string[] = []
   // result : any
-
   date : any
   month : any
   year : any
   getDate : any
-
   leavedays : any  
   selected : any
- 
+  qci_id:any
+  temp:any;
   form:any
   minDate = new Date()
   minDate2 = new Date()
-
+  leave_reason:any
+  leave_type:any
+   data:any
   constructor( private lms:LmsService, private _formBuilder: FormBuilder){
     this.lms.emitsload.subscribe( el => this.loader = el )
     this.lms.showLoader()
@@ -54,6 +51,7 @@ export class ApplyComponent implements OnInit {
 
   ngOnInit(){
     this.lms.getEmployees()
+
     this.firstFormGroup = this._formBuilder.group({
       check1 : [ '', Validators.required ],
       check2 : [ '', Validators.required ],
@@ -135,9 +133,7 @@ export class ApplyComponent implements OnInit {
       else console.log( as[i] )
     }
   }
-  Applyleave(){
-
-    //  this.employee.push(this.leavedays)
+  Applyleave(){//  this.employee.push(this.leavedays)
       //this.lms.applyleave(this.leavedays)
       // console.log(this.applyLeave,)
     // this.lms.applyleave(this.employee)
@@ -147,9 +143,19 @@ export class ApplyComponent implements OnInit {
     // let leave = this.leavedays()
     // let temp = { 'leavedays':this.firstDate};
    // let formObj = [];
+  //  let temp = {qci_id:this.qci_id,}
+  //  let employee  = [];
+  // this.employee.push(temp)
+  //  console.log(temp)
+  // $event.preventDefault()
+  // this.employeearray.push(this.qci_id)
+  // console.log(this.qci_id)
+    
+  this.temp = localStorage.getItem('userName')
    let tmp : any;
-   tmp = { firstDate:this.firstDate, days: this.leavedays, from:this.firstDate, to:this.secondDate}
+   tmp = { qci_id:this.temp, date_of_apply:this.firstDate, days:this.leavedays, date_from:this.firstDate, date_to:this.secondDate, leave_reason:this.leave_reason, leave_type:this.leave_type}
     this.applyLeave.push(tmp);
-    console.log(this.applyLeave);
+   this.lms.applyleave(tmp)
+    // console.log(tmp)
   }
 }

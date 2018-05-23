@@ -23,7 +23,6 @@ export class ApiService {
     this.headers.append( 'Authorization', this.token ) // ADD/Append your authorized token to Default headers
     this.opts = new RequestOptions()
     this.opts.headers = this.headers
-  
   }
   
   Login( data : any ){
@@ -38,7 +37,8 @@ export class ApiService {
   }
 
   ApplyLeave( data : any ) {
-    return this.http.post( this.URL+'lms/applyLeave', data, this.opts).map( r =>r.json() )
+    console.log(data)
+    return this.http.post( this.URL+'lms/applyLeave', data, this.opts).map( r => console.log(r.json()) )
   }
 
 }
