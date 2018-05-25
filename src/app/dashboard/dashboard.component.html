@@ -8,16 +8,23 @@
                         <mat-chip-list>
                             <mat-chip>1.</mat-chip>
                         </mat-chip-list>
-                        <div class="col-sm-12"><i class="material-icons text-success">face</i> Your leave from 13/05/2018 to 14/05/2018 is approved !</div>
+                        <div class="col-sm-12">
+                            <i class="material-icons text-success">face</i> Your leave from 13/05/2018 to 14/05/2018 is approved !
+                        </div>
                     </mat-list-item>
                     <mat-divider></mat-divider>
+                  <div *ngFor="let lev of leave">
                     <mat-list-item>
                         <mat-chip-list>
                             <mat-chip>2.</mat-chip>
                         </mat-chip-list>
-                        <div class="col-sm-12"><i class="material-icons text-danger">face</i> Your leave from 24/05/2018 to 25/05/2018 is still pending !</div>
+                        <div class="col-sm-12">
+                            <i class="material-icons text-danger">face</i> Your leave from {{lev.date_from}} to {{lev.date_to}} is still pending !
+                        </div>
                     </mat-list-item>
                     <mat-divider></mat-divider>
+                </div>
+
                     <mat-list-item>
                         <mat-chip-list>
                             <mat-chip>3.</mat-chip>

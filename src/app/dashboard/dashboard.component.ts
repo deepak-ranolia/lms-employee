@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   // public daysArr
   
   employee = new Array()
+  leave = new Array()
   
   constructor( private lms: LmsService ) {
     this.lms.emitsload.subscribe( el => this.loader = el )
@@ -23,39 +24,16 @@ export class DashboardComponent implements OnInit {
       this.employee = r
       console.log(this.employee)
     })
+
+    this.lms.emitGetLeaveDetail.subscribe( r => {
+      this.leave = r
+      console.log(this.leave)
+    })
   }
   
   public ngOnInit() {
     this.lms.getEmployees()
+    this.lms.getLeavedetails()
     // this.daysArr = this.createCalendar( this.momentDate )
   }
-  
-
-  // public todayCheck(day){
-  //   if ( !day ) {
-  //     return false
-  //   }
-  //   return moment().format( "L" ) === day.format 
-  // }
-
-  // public createCalendar( month ) {
-  //   let firstDay = moment(month).startOf( "M" )
-  //   let days = Array.apply( null, { length: month.daysInMonth() } )
-  //     .map( Number.call, Number )
-  //     .map ( (n) => {
-  //       return moment(firstDay).add( n, 'd' )
-  //     })
-  //     return days
-  // }
-
-  // public nextMonth() {
-  //   this.momentDate.add(1, 'M' )
-  //   this.daysArr = this.createCalendar( this.momentDate )
-  // }
-
-  // public previousMonth() {
-  //   this.momentDate.subtract( 1, 'M' )
-  //   this.daysArr = this.createCalendar( this.momentDate )
-  // }
-  
 }

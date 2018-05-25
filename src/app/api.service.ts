@@ -37,8 +37,13 @@ export class ApiService {
   }
 
   ApplyLeave( data : any ) {
-    console.log(data)
-    return this.http.post( this.URL+'lms/applyLeave', data, this.opts).map( r => console.log(r.json()) )
+    // console.log(data)
+    return this.http.post( this.URL+'lms/applyLeave', data, this.opts).map( r =>r.json())
+  }
+
+   GetLeaveDetail(){
+    this.uid = localStorage.getItem('userName')
+    return this.http.get( this.URL+'lms/applyLeave/'+this.uid, this.opts).map( r =>r.json())
   }
 
 }

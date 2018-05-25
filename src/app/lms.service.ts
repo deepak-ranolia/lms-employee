@@ -12,6 +12,7 @@ export class LmsService {
   emitgetEmployees = new EventEmitter<any>()
   emitLogin = new EventEmitter<any>()
   emitErr = new EventEmitter<any>()
+  emitGetLeaveDetail = new EventEmitter<any>()
 
   constructor( private api: ApiService, private router:Router, public snackBar: MatSnackBar ) { } 
 
@@ -64,4 +65,12 @@ export class LmsService {
       console.log(err)
     })
   }
+
+  getLeavedetails(){
+    this.api.GetLeaveDetail().subscribe( el => {
+      if ( el.success ) this.emitGetLeaveDetail.emit( el.data )
+     else console.log( el )
+     }, err => console.log( err ) )
+  }
 }
+
